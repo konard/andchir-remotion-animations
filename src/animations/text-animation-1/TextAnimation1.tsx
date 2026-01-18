@@ -9,11 +9,10 @@ import {
 
 // Animation timing configuration (in frames, at 30fps)
 // The animation runs from 00:07 to 00:13 (6 seconds = 180 frames)
-// Reference video shows smooth bar fill animation followed by text appearance
+// Reference video shows smooth bar fill animation with progressive text reveal
 const TIMING = {
   BAR_START: 0, // Bars start filling
   BAR_END: 45, // Bars finish filling (1.5 seconds)
-  TEXT_APPEAR: 48, // Text appears shortly after bars complete
   HOLD_END: 180, // Animation ends (6 seconds total)
 };
 
@@ -33,8 +32,8 @@ export const TextAnimation1: React.FC = () => {
     }
   );
 
-  // Text appears instantly when bar animation is complete
-  const textOpacity = frame >= TIMING.TEXT_APPEAR ? 1 : 0;
+  // Text is always visible, revealed progressively by the bar width animation
+  const textOpacity = 1;
 
   // Text content
   const nameText = "ISLA KING";
@@ -65,14 +64,13 @@ export const TextAnimation1: React.FC = () => {
         <div
           style={{
             position: "relative",
-            overflow: "hidden",
-            backgroundColor: "white",
+            width: "250px",
             height: "60px",
-            display: "flex",
-            alignItems: "center",
+            overflow: "hidden",
+            border: "2px solid white",
           }}
         >
-          {/* White bar fill animation */}
+          {/* White bar fill animation with text inside */}
           <div
             style={{
               position: "absolute",
@@ -81,26 +79,27 @@ export const TextAnimation1: React.FC = () => {
               bottom: 0,
               width: `${barProgress * 100}%`,
               backgroundColor: "white",
-              zIndex: 0,
-            }}
-          />
-          {/* Name text */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              fontFamily: "Arial, sans-serif",
-              fontSize: "36px",
-              fontWeight: "bold",
-              color: "black",
-              letterSpacing: "1px",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              opacity: textOpacity,
-              whiteSpace: "nowrap",
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
             }}
           >
-            {nameText}
+            {/* Name text */}
+            <div
+              style={{
+                fontFamily: "Arial, sans-serif",
+                fontSize: "36px",
+                fontWeight: "bold",
+                color: "black",
+                letterSpacing: "1px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                opacity: textOpacity,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {nameText}
+            </div>
           </div>
         </div>
 
@@ -108,14 +107,13 @@ export const TextAnimation1: React.FC = () => {
         <div
           style={{
             position: "relative",
-            overflow: "hidden",
-            backgroundColor: "#FF6600", // Orange color
+            width: "250px",
             height: "40px",
-            display: "flex",
-            alignItems: "center",
+            overflow: "hidden",
+            border: "2px solid #FF6600",
           }}
         >
-          {/* Orange bar fill animation */}
+          {/* Orange bar fill animation with text inside */}
           <div
             style={{
               position: "absolute",
@@ -123,27 +121,28 @@ export const TextAnimation1: React.FC = () => {
               left: 0,
               bottom: 0,
               width: `${barProgress * 100}%`,
-              backgroundColor: "#FF6600",
-              zIndex: 0,
-            }}
-          />
-          {/* Job title text */}
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              fontFamily: "Arial, sans-serif",
-              fontSize: "24px",
-              fontWeight: "bold",
-              color: "white",
-              letterSpacing: "1px",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              opacity: textOpacity,
-              whiteSpace: "nowrap",
+              backgroundColor: "#FF6600", // Orange color
+              display: "flex",
+              alignItems: "center",
+              overflow: "hidden",
             }}
           >
-            {jobText}
+            {/* Job title text */}
+            <div
+              style={{
+                fontFamily: "Arial, sans-serif",
+                fontSize: "24px",
+                fontWeight: "bold",
+                color: "white",
+                letterSpacing: "1px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                opacity: textOpacity,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {jobText}
+            </div>
           </div>
         </div>
       </div>
